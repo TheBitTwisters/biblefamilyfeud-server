@@ -22,19 +22,20 @@ app.use((req, res, next) => {
 });
 app.use(AuthVerify);
 
-app.get('/', (req, res) => {
-  res.send('Hello world');
-});
+// # basepaths
 app.use('/lists', routes.list);
 app.use('/list-items', routes.listItem);
 
+// all other paths return 404
 app.all('*', (req, res, next) => {
   next(
     new AppError(`The URL ${req.originalUrl} does not exists`, 404)
   );
 });
+// handle all error
 app.use(ErrorHandler);
 
+// connect to mongodb first
 connectDb().then(async () => {
   app.listen(process.env.PORT, () =>
     console.log('Server listening on port ' + process.env.PORT)
