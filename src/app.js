@@ -23,6 +23,7 @@ app.use((req, res, next) => {
 app.use(AuthVerify);
 
 // # basepaths
+app.use('/auth', routes.auth);
 app.use('/lists', routes.list);
 app.use('/list-items', routes.listItem);
 
@@ -32,7 +33,8 @@ app.all('*', (req, res, next) => {
     new AppError(`The URL ${req.originalUrl} does not exists`, 404)
   );
 });
-// handle all error
+
+// handle all errors
 app.use(ErrorHandler);
 
 // connect to mongodb first

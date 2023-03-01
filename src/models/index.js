@@ -3,6 +3,7 @@ import Game from './game';
 import List from './list';
 import ListItem from './list-item';
 import Player from './player';
+import Attendance from './attendance';
 
 const connectDb = () => {
   mongoose.set('strictQuery', true);
@@ -14,6 +15,7 @@ const models = {
   List,
   ListItem,
   Player,
+  Attendance,
 };
 
 export { connectDb };

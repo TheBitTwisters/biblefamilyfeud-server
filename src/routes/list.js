@@ -4,7 +4,7 @@ const router = Router();
 
 router.get('/', async (req, res) => {
   const lists = await req.context.models.List.find();
-  return res.json(lists);
+  return res.status(200).json(lists);
 });
 
 router.post('/', async (req, res) => {
