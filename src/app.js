@@ -6,6 +6,7 @@ import routes from './routes';
 
 import AppError from './utils/app-error';
 import ErrorHandler from './middlewares/error-handler';
+import AuthVerify from './middlewares/auth';
 
 const app = express();
 
@@ -19,6 +20,7 @@ app.use((req, res, next) => {
   };
   next();
 });
+app.use(AuthVerify);
 
 app.get('/', (req, res) => {
   res.send('Hello world');
